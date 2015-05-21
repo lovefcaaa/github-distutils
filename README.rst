@@ -144,3 +144,22 @@ tar zxvf setuptools-0.6c11.tar.gz
 cd setuptools-0.6c11
 python setup.py build
 python setup.py install
+
+'''''''''''''
+python setup.py install
+>>> from dateutil.parser import parse
+>>> parse('01/11/2014')
+datetime.datetime(2014, 1, 11, 0, 0)
+>>> parse('1-11-2014')
+datetime.datetime(2014, 1, 11, 0, 0)
+>>> import datetime
+>>> from dateutil import zoneinfo
+>>> zone = zoneinfo.gettz('US/Eastern')
+>>> zone
+tzfile('America/New_York')
+>>> zone2 = zoneinfo.gettz('US/Hawaii') 
+>>> dt = datetime.datetime.now(zone)
+>>> dt
+datetime.datetime(2014, 1, 11, 4, 34, 7, 578665, tzinfo=tzfile('America/New_York'))
+>>> dt.astimezone(zone2)
+datetime.datetime(2014, 1, 10, 23, 34, 7, 578665, tzinfo=tzfile('US/Hawaii'))
